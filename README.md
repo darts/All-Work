@@ -1,1 +1,1 @@
-# Eclipse
+This repository contains all of the Java programs I have written. If you're in CS in TCD please change it a little bit if you're going to copy it.

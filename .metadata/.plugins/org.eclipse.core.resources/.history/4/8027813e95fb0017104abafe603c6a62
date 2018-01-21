@@ -1,0 +1,13 @@
+
+public class Bank {
+
+	public static void main(String[] args) {
+		BankCustmer bankCustomer = new BankCustmer();
+		bankCustomer.setAccountNumber(223234145123);
+		bankCustomer.setSortCode(999888);
+		bankCustomer.setCustomerEmail("John Smith");
+		bankCusotmer
+
+	}
+
+}

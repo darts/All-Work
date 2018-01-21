@@ -1,0 +1,62 @@
+public class Sieve_of_Eratosthenes {
+	public static void main(String[] args) {
+		printArray(sieve(30), " ");
+	}
+
+	public static String[] createSequence(int maxNumber) {
+		String[] numArray = new String[maxNumber - 1];
+		for (int index = 0; index < maxNumber - 1; index++)
+			numArray[index] = Integer.toString(index + 2);
+		return numArray;
+	}
+
+	public static void printArray(String[] arrayToPrint, String separator) {
+		String stringToPrint = "";
+		for (int index = 0; index < arrayToPrint.length; index++) {
+			stringToPrint += arrayToPrint[index] + separator;
+		}
+		System.out.println(stringToPrint);
+	}
+
+	public static String[] convertToStringArray(int[] numArray) {
+		String[] stringArray = new String[numArray.length];
+		for (int index = 0; index < numArray.length; index++)
+			stringArray[index] = Integer.toString(numArray[index]);
+		return stringArray;
+	}
+
+	public static void crossOutHigherMultiples(String[] numArray, int numToCross, int indexOfNum) {
+		for (int index = indexOfNum + 1; index < numArray.length; index++) {
+			try {
+				int currentNum = Integer.parseInt(numArray[index]);
+				if (currentNum % numToCross == 0)
+					numArray[index] = "[" + numArray[index] + "]";
+			} catch (NumberFormatException e) {
+
+			} finally {
+			}
+		}
+	}
+
+	public static String[] sieve(int maxNum) {
+		String[] numArray = createSequence(maxNum);
+		int numberValid = 0;
+		for (int index = 0; index < numArray.length; index++) {
+			try {
+				crossOutHigherMultiples(numArray, Integer.parseInt(numArray[index]), index);
+				numberValid++;
+			} finally {
+			}
+		}
+		String[] primeArray = new String[numberValid];
+		for (int index = 0; index < primeArray.length;) {
+			try {
+				primeArray[index] = Integer.toString(Integer.parseInt(numArray[index]));
+				index++;
+			} finally {
+			}
+		}
+		return primeArray;
+	}
+
+}

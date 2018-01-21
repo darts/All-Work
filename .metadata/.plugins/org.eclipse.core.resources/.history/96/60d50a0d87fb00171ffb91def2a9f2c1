@@ -1,0 +1,31 @@
+public class Sieve_of_Eratosthenes{
+	public static void main(String[] args) {
+		
+		int[] wayarray = {2, 5};
+		printArray(convertToStringArray(createSequence(10)), " ");
+	}
+	
+	
+	public static int[] createSequence(int maxNumber) {
+		int[] numArray = new int[maxNumber - 1];
+		for(int index = 0; index < maxNumber - 1; index++)
+			numArray[index] = index + 2;
+		return numArray;
+	}
+	
+	public static void printArray(String[] arrayToPrint, String separator) {
+		String stringToPrint = "";
+		for (int index = 0; index < arrayToPrint.length; index++) {
+			stringToPrint += arrayToPrint[index] + separator;
+		}
+		System.out.println(stringToPrint);
+	}
+	
+	public static String[] convertToStringArray(int[] numArray) {
+		String[] stringArray = new String[numArray.length];
+		for(int index = 0; index < numArray.length; index++)
+			stringArray[index] = Integer.toString(numArray[index]);
+		return stringArray;
+	}
+	
+}

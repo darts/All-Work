@@ -1,0 +1,20 @@
+
+public class Sieve_of_Eratosthenes {
+
+	public static final int numToStart = 2;
+	
+	public static void main(String[] args) {
+		
+		int maxNumber = 10;
+		
+		
+		int numberOfNumbers = --maxNumber;
+		int[] numArray = new int[numberOfNumbers]; 
+		
+		
+	}
+	
+	public static int[] createSequence(maxNumber) {
+		
+	}
+}

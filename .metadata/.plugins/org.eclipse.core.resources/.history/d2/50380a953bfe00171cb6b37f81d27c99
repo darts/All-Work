@@ -1,0 +1,11 @@
+import java.util.Scanner;
+
+public class valid {
+
+	public static void main(String[] args) {
+		char a = 'a';
+		int b = Character.getNumericValue(a);
+		System.out.println(a + " " + b);
+	}
+
+}

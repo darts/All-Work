@@ -3,6 +3,7 @@
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -65,6 +66,13 @@ public class Bank implements BankInterface {
 			double balance = customer.getBalance();
 			if (balance >= debitAmount) {
 				customer.setBalance(balance - debitAmount);
+				transactions transaction = new transactions();
+				transaction.setClosingBalance(customer.getBalance());
+				transaction.setTransactionAmount(debitAmount);
+				DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+				Date date = new Date();
+				transaction.setTransactionDate(date);
+				customer.addTransaction(transaction);
 				return true;
 			}
 		}
@@ -76,6 +84,11 @@ public class Bank implements BankInterface {
 		BankCustomer customer = findCustomer(accountNumber);
 		if (customer != null) {
 			customer.setBalance(customer.getBalance() + creditAmount);
+			transactions transaction = new transactions();
+			transaction.setClosingBalance(customer.getBalance());
+			transaction.setTransactionAmount(creditAmount);
+			customer.addTransaction(transaction);
+//			transaction.setTransactionDate();
 			return true;
 		}
 		return false;
@@ -92,16 +105,22 @@ public class Bank implements BankInterface {
 				if (custData == null) {
 					endFound = true;
 				} else {
+					DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 					String[] customerInfo = custData.split(",");
 					BankCustomer NewCustomer = new BankCustomer();
-					NewCustomer.setAccountNumber(new Long(customerInfo[0]));
-					NewCustomer.setSortCode(new Integer(customerInfo[1]));
+					NewCustomer.setAccountNumber(Long.parseLong(customerInfo[0]));
+					NewCustomer.setSortCode(Integer.parseInt(customerInfo[1]));
 					NewCustomer.setCustomerName(customerInfo[2]);
 					NewCustomer.setCustomerAddress(customerInfo[3]);
 					NewCustomer.setCustomerEmail(customerInfo[4]);
-					NewCustomer.setBalance(new Double(customerInfo[5]));
+					try {
+						NewCustomer.setCustomerDateOfBirth(formatter.parse(customerInfo[5]));
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
+					NewCustomer.setBalance(new Double(customerInfo[6]));
 					customerTree.put(NewCustomer.getAccountNumber(), NewCustomer);
-					
+
 				}
 
 			}

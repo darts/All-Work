@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Date;
 
 public class BankCustomer {
@@ -8,7 +9,18 @@ public class BankCustomer {
 	String customerEmail;
 	Date customerDateOfBirth;
 	double balance;
+	ArrayList<transactions> customerTransactions;
 	
+	public ArrayList<transactions> getCustomerTransactions() {
+		return customerTransactions;
+	}
+	public void addTransaction(transactions transaction) {
+		customerTransactions.add(transaction);
+	}
+	
+	public void setCustomerTransactions(ArrayList<transactions> customerTransactions) {
+		this.customerTransactions = customerTransactions;
+	}
 	public double getBalance() {
 		return balance;
 	}

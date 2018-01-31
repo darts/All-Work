@@ -7,6 +7,8 @@ public class valid {
 			'5', '6', '7', '8', '9' };
 
 	public static void main(String[] args) {
+		Scanner userInputScanner = new Scanner(System.in);
+		
 		for (int index = 0; index < ARRAY.length; index++) {
 			char a = ARRAY[index];
 			int b = Character.getNumericValue(a);

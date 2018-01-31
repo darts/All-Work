@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+		<item value="H:\Eclipse"/>
 		<item value="H:\Eclipse\etest2"/>
 		<item value="G:\Eclipse\High Scores"/>
 		<item value="G:\Eclipse\OldPoundsToNew"/>
@@ -14,6 +15,7 @@
 		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
 		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="D:\Eclipse\Noughts And Crosses"/>
 			<item value="D:\Eclipse"/>
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">

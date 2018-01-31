@@ -1,3 +1,4 @@
+
 /* SELF ASSESSMENT
    1. clearBoard:
 
@@ -123,7 +124,7 @@ public class NoughtsAndCrossed {
 						finished = true;
 						hasWinner = true;
 					}
-					if(isBoardFull(board)) 
+					if (isBoardFull(board))
 						finished = true;
 				} else {
 					System.out.println("Sorry, you can't do that.");
@@ -133,7 +134,7 @@ public class NoughtsAndCrossed {
 			}
 			String garbage = userInputScanner.nextLine();
 		}
-		if(!hasWinner)
+		if (!hasWinner)
 			System.out.println("The game is a draw.");
 	}
 
@@ -192,7 +193,7 @@ public class NoughtsAndCrossed {
 			if (hasWinner && prevChar != ' ')
 				return prevChar;
 		}
-		
+
 		for (int column = 0; column < NUMBER_OF_ROWS; column++) {
 			char prevChar = board[0][column];
 			boolean hasWinner = true;
@@ -203,20 +204,20 @@ public class NoughtsAndCrossed {
 			if (hasWinner && prevChar != ' ')
 				return prevChar;
 		}
-		
+
 		char prevChar = board[0][0];
 		boolean hasWinner = true;
 		for (int index = 0; index < NUMBER_OF_ROWS; index++) {
 			if (board[index][index] != prevChar)
 				hasWinner = false;
 		}
-		
+
 		if (hasWinner && prevChar != ' ')
 			return prevChar;
-		
+
 		if (board[0][2] == board[1][1] && board[0][2] == board[2][0] && board[0][2] != ' ')
 			return board[0][2];
-		
+
 		return ' ';
 	}
 }

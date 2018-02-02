@@ -11,7 +11,8 @@ public class WordLink {
 	public static void main(String[] args) {
 		// Relative pathing wasn't working.
 		ArrayList<String> wordList = readDictionary("D:\\Eclipse\\WordLink\\src\\wordList.txt");
-
+		String[] wordArray = wordList.toArray(new String[0]);
+		System.out.println(isWordChain(readWordList("smile, stile, stale, stare, stars, sears, tears"), wordArray));
 	}
 
 	public static ArrayList<String> readDictionary(String filename) {
@@ -22,12 +23,10 @@ public class WordLink {
 			BufferedReader buffReader = new BufferedReader(reader);
 			for (int index = 0; index < 658964; index++) {
 				wordList.add(buffReader.readLine());
-				System.out.println(index);
+				//System.out.println(index);
 			}
 			return wordList;
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return wordList;
@@ -47,9 +46,10 @@ public class WordLink {
 		return true;
 	}
 
-	public static boolean isEnglishWord(String wordToCheck, ArrayList<String> comparisonList) {
+	public static boolean isEnglishWord(String wordToCheck, String[] wordArray) {
+		if(Arrays.binarySearch(wordArray, wordToCheck) < 0)
+			return false;
 		return true;
-		// return false;
 	}
 
 	public static boolean isDifferentByOne(String firstWord, String secondWord) {
@@ -66,14 +66,14 @@ public class WordLink {
 		return false;
 	}
 
-	public static boolean isWordChain(String[] inputList, ArrayList<String> comparisonList) {
+	public static boolean isWordChain(String[] inputList, String[] wordArray) {
 		for (int index = 0; index < inputList.length - 1; index++) {
-			if(isDifferentByOne(inputList[index], inputList[index + 1])) {
-				
+			if (!isDifferentByOne(inputList[index], inputList[index + 1])
+					|| !isEnglishWord(inputList[index], wordArray)) {
+				return false;
 			}
 		}
 		return true;
-
 	}
 
 }

@@ -1,18 +1,25 @@
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class WordLink {
+	public static final int NUMBER_OF_WORDS = 658964;
+
 	public static void main(String[] args) {
 		// Relative pathing wasn't working.
-		ArrayList<String> wordList = readDictionary("D:\\Eclipse\\WordLink\\src\\wordList.txt");
-		String[] wordArray = wordList.toArray(new String[0]);
-		System.out.println(isWordChain(readWordList("smile, stile, stale, stare, stars, sears, tears"), wordArray));
+		ArrayList<String> wordList = readDictionary("src\\wordList.txt");
+		String[] wordArray = wordList.toArray(new String[wordList.size()]);
+		boolean finished = false;
+		Scanner userInputScanner = new Scanner(System.in);
+		while(!finished) {
+			System.out.print("Please enter the list of words to be checked or type '?quit' to exit: ");
+			if(userInputScanner.hasNext()) {
+				
+			}
+			
+		}
 	}
 
 	public static ArrayList<String> readDictionary(String filename) {
@@ -21,10 +28,10 @@ public class WordLink {
 		try {
 			reader = new FileReader(filename);
 			BufferedReader buffReader = new BufferedReader(reader);
-			for (int index = 0; index < 658964; index++) {
+			for (int index = 0; index < NUMBER_OF_WORDS; index++) {
 				wordList.add(buffReader.readLine());
-				//System.out.println(index);
 			}
+			buffReader.close();
 			return wordList;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -33,7 +40,7 @@ public class WordLink {
 	}
 
 	public static String[] readWordList(String stringToParse) {
-		return stringToParse.split(",");
+		return stringToParse.split(", ");
 	}
 
 	public static boolean isUniqueList(String[] listToCheck) {
@@ -47,7 +54,7 @@ public class WordLink {
 	}
 
 	public static boolean isEnglishWord(String wordToCheck, String[] wordArray) {
-		if(Arrays.binarySearch(wordArray, wordToCheck) < 0)
+		if (Arrays.binarySearch(wordArray, wordToCheck) < 0)
 			return false;
 		return true;
 	}
@@ -56,12 +63,13 @@ public class WordLink {
 		if (firstWord.length() == secondWord.length()) {
 			int diffCount = 0;
 			for (int index = 0; index < firstWord.length(); index++) {
-				if (firstWord.charAt(index) != firstWord.charAt(index))
+				if (firstWord.charAt(index) != secondWord.charAt(index))
 					diffCount++;
 				if (diffCount > 1)
 					return false;
 			}
-			return true;
+			if (diffCount == 1)
+				return true;
 		}
 		return false;
 	}
@@ -69,11 +77,9 @@ public class WordLink {
 	public static boolean isWordChain(String[] inputList, String[] wordArray) {
 		for (int index = 0; index < inputList.length - 1; index++) {
 			if (!isDifferentByOne(inputList[index], inputList[index + 1])
-					|| !isEnglishWord(inputList[index], wordArray)) {
+					|| !isEnglishWord(inputList[index], wordArray))
 				return false;
-			}
 		}
 		return true;
 	}
-
 }

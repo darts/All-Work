@@ -1,5 +1,3 @@
-
-// new class banktester and move main there etc.
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -21,15 +19,7 @@ public class Bank implements BankInterface {
 	}
 
 	public BankCustomer findCustomer(long customerNumber) {
-		// BankCustomer customer = null;
-		// boolean customerFound = false;
-		/*
-		 * for (int index = 0; index < customerList.size() && !customerFound; index++) {
-		 * customer = customerList.get(index); if (customer.getAccountNumber() ==
-		 * customerNumber) return customer; }
-		 */
 		return customerTree.get(customerNumber);
-		// return null;
 	}
 
 	@Override
@@ -88,7 +78,7 @@ public class Bank implements BankInterface {
 			transaction.setClosingBalance(customer.getBalance());
 			transaction.setTransactionAmount(creditAmount);
 			customer.addTransaction(transaction);
-//			transaction.setTransactionDate();
+			// transaction.setTransactionDate();
 			return true;
 		}
 		return false;
@@ -120,14 +110,10 @@ public class Bank implements BankInterface {
 					}
 					NewCustomer.setBalance(new Double(customerInfo[6]));
 					customerTree.put(NewCustomer.getAccountNumber(), NewCustomer);
-
 				}
-
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
-
 }

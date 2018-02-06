@@ -15,12 +15,13 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="createCipher" key="selection"/>
+		<item value="e" key="selection"/>
 		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="true" key="wholeword"/>
 		<list key="findhistory">
+			<item value="e"/>
 			<item value="createCipher"/>
 			<item value="&quot;"/>
 			<item value="printHighlistOfHighScores"/>

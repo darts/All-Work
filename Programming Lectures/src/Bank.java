@@ -11,9 +11,13 @@ import java.util.TreeMap;
 import java.util.Map;
 
 public class Bank implements BankInterface {
-	// static List<BankCustomer> customerList = new ArrayList<BankCustomer>();
-	Map<Long, BankCustomer> customerTree = new TreeMap<Long, BankCustomer>();
-	long account = 10001;
+	Map<Long, BankCustomer> customerTree;
+	long account;
+
+	public Bank() {
+		customerTree = new TreeMap<Long, BankCustomer>();
+		account = 10001;
+	}
 
 	public static void main(String[] args) {
 	}
@@ -56,13 +60,8 @@ public class Bank implements BankInterface {
 			double balance = customer.getBalance();
 			if (balance >= debitAmount) {
 				customer.setBalance(balance - debitAmount);
-				transactions transaction = new transactions();
-				transaction.setClosingBalance(customer.getBalance());
-				transaction.setTransactionAmount(debitAmount);
 				DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-				Date date = new Date();
-				transaction.setTransactionDate(date);
-				customer.addTransaction(transaction);
+				customer.addTransaction(new transactions(new Date(), "Debit", debitAmount, customer.getBalance()));
 				return true;
 			}
 		}
@@ -74,11 +73,8 @@ public class Bank implements BankInterface {
 		BankCustomer customer = findCustomer(accountNumber);
 		if (customer != null) {
 			customer.setBalance(customer.getBalance() + creditAmount);
-			transactions transaction = new transactions();
-			transaction.setClosingBalance(customer.getBalance());
-			transaction.setTransactionAmount(creditAmount);
-			customer.addTransaction(transaction);
-			// transaction.setTransactionDate();
+			DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+			customer.addTransaction(new transactions(new Date(), "Credit", creditAmount, customer.getBalance()));
 			return true;
 		}
 		return false;
@@ -97,23 +93,28 @@ public class Bank implements BankInterface {
 				} else {
 					DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 					String[] customerInfo = custData.split(",");
-					BankCustomer NewCustomer = new BankCustomer();
-					NewCustomer.setAccountNumber(Long.parseLong(customerInfo[0]));
-					NewCustomer.setSortCode(Integer.parseInt(customerInfo[1]));
-					NewCustomer.setCustomerName(customerInfo[2]);
-					NewCustomer.setCustomerAddress(customerInfo[3]);
-					NewCustomer.setCustomerEmail(customerInfo[4]);
+					Date dateOfBirth = null;
 					try {
-						NewCustomer.setCustomerDateOfBirth(formatter.parse(customerInfo[5]));
+						dateOfBirth = (formatter.parse(customerInfo[5]));
 					} catch (ParseException e) {
 						e.printStackTrace();
 					}
-					NewCustomer.setBalance(new Double(customerInfo[6]));
+					BankCustomer NewCustomer = new BankCustomer(Long.parseLong(customerInfo[0]),
+							Integer.parseInt(customerInfo[1]), customerInfo[2], customerInfo[3], customerInfo[4],
+							dateOfBirth, new Double(customerInfo[6]));
 					customerTree.put(NewCustomer.getAccountNumber(), NewCustomer);
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+	
+	public void printStatement(long accountNumber) {
+		BankCustomer customer = findCustomer(accountNumber);
+		ArrayList<transactions> transactionList = customer.getCustomerTransactions();
+		for(int counter = 0; counter < transactionList.size(); counter++) {
+			System.out.println(transactionList.get(counter).toString());
 		}
 	}
 }

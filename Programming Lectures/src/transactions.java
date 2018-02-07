@@ -6,6 +6,17 @@ public class transactions {
 	private double transactionAmount;
 	private double closingBalance;
 	
+	public transactions() {
+	}
+	
+	public transactions(Date transactionDate, String transactionType, double transactionAmount, double closingBalance) {
+		this.transactionDate = transactionDate;
+		this.transactionType = transactionType;
+		this.transactionAmount = transactionAmount;
+		this.closingBalance = closingBalance;
+	}
+	
+	
 	public Date getTransactionDate() {
 		return transactionDate;
 	}

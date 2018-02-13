@@ -106,8 +106,8 @@ public class WordLink {
 	}
 
 	public static boolean isUniqueList(String[] listToCheck) {
-		for (int index = 0; index < listToCheck.length; index++) {
-			for (int counter = index; counter < listToCheck.length; counter++) {
+		for (int index = 0; index < listToCheck.length - 1; index++) {
+			for (int counter = index + 1; counter < listToCheck.length; counter++) {
 				if (listToCheck[index].equals(listToCheck[counter]))
 					return false;
 			}
@@ -132,6 +132,7 @@ public class WordLink {
 				return true;
 		}
 		return false;
+		
 	}
 
 	public static boolean isWordChain(String[] inputList, ArrayList<String> wordList) {

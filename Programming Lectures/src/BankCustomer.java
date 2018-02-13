@@ -13,14 +13,18 @@ public class BankCustomer {
 
 	public BankCustomer(long accountNumber, int sortCode, String customerName, String customerAddress,
 			String customerEmail, Date customerDateOfBirth, double balance) {
+		this(customerName, customerAddress, customerEmail, customerDateOfBirth, balance);
 		this.accountNumber = accountNumber;
 		this.sortCode = sortCode;
+		customerTransactions = new ArrayList<transactions>();
+	}
+	
+	public BankCustomer(String customerName, String customerAddress, String customerEmail, Date customerDateOfBirth, double balance) {
 		this.customerName = customerName;
 		this.customerAddress = customerAddress;
 		this.customerEmail = customerEmail;
 		this.customerDateOfBirth = customerDateOfBirth;
 		this.balance = balance;
-		customerTransactions = new ArrayList<transactions>();
 	}
 
 	public BankCustomer() {

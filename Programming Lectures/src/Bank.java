@@ -105,6 +105,7 @@ public class Bank implements BankInterface {
 					customerTree.put(NewCustomer.getAccountNumber(), NewCustomer);
 				}
 			}
+			buffReader.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -114,7 +114,7 @@ public class ChucALuck {
 				System.out.println("Please enter a valid number.");
 				userInputScanner.next();
 			}
-		}
+		} 
 	}
 
 	// Creates and rolls a number of dice and returns the nature of the score.
@@ -134,7 +134,7 @@ public class ChucALuck {
 			}
 			if (sumRolled < 11 && !sameFace && sumRolled / numOfDice != 1 && sumRolled / numOfDice != 2
 					&& sumRolled / numOfDice != 3)
-				return LOW;
+				return LOW; 
 			if (sumRolled > 10 && !sameFace && sumRolled / numOfDice != 4 && sumRolled / numOfDice != 5
 					&& sumRolled / numOfDice != 6)
 				return HIGH;

@@ -9,11 +9,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.TreeMap;
 import java.util.Map;
+import java.util.Set;
 
 public class Bank implements BankInterface {
 	Map<Long, BankCustomer> customerTree;
 	long account;
-
+	public static final int SORT_CODE = 991222;
+	public static final int OPENING_BALANCE = 0;
 	public Bank() {
 		customerTree = new TreeMap<Long, BankCustomer>();
 		account = 10001;
@@ -80,7 +82,7 @@ public class Bank implements BankInterface {
 		return false;
 	}
 
-	public void readCustomersFromFile(int index) {
+	public void readCustomersFromFile() {
 		FileReader reader;
 		try {
 			reader = new FileReader("customers.txt");
@@ -110,12 +112,40 @@ public class Bank implements BankInterface {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void printStatement(long accountNumber) {
 		BankCustomer customer = findCustomer(accountNumber);
 		ArrayList<transactions> transactionList = customer.getCustomerTransactions();
-		for(int counter = 0; counter < transactionList.size(); counter++) {
+		for (int counter = 0; counter < transactionList.size(); counter++) {
 			System.out.println(transactionList.get(counter).toString());
 		}
 	}
+
+	public Long[] getAllCustomerAccountNumbers() {
+		Long[] customerAccountNumbers = new Long[customerTree.keySet().size()];
+		customerAccountNumbers = customerTree.keySet().toArray(customerAccountNumbers);
+		return customerAccountNumbers;
+	}
+	
+	public void createCustomer(String name, String address, String email, String dateOfBirth) {
+		long accountNumber = createAccountNumber();
+		DateFormat formatter = new SimpleDateFormat("dd-MM-yyy");
+		Date birthDate = null;
+		try {
+			birthDate = formatter.parse(dateOfBirth);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		BankCustomer customer = new BankCustomer(accountNumber, SORT_CODE, name, address, email, birthDate, OPENING_BALANCE);
+		customerTree.put(customer.getAccountNumber(), customer);
+	}
+		
+//	public ArrayList<long> getCustomerAccountNumbers() {
+//		ArrayList<Long> customerAccountNumbers = new ArrayList<Long>();
+//		Set <Long> accountNumbers = customerTree.keySet();
+//		for(int count = 0; count < accountNumbers.size(); count++) {
+//			
+//		}
+//	}
 }

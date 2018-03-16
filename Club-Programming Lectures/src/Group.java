@@ -11,6 +11,12 @@ public class Group {
 		this.groupMembers = groupMembers;
 	}
 
+	
+	public Group(int groupId, String groupDescription) {
+		this(groupId, groupDescription, new ArrayList<ClubMember>());
+	}
+
+
 	public int getGroupId() {
 		return groupId;
 	}
@@ -31,8 +37,27 @@ public class Group {
 		return groupMembers;
 	}
 
+	public boolean isMember(ClubMember member) {
+		for(ClubMember clubMember : groupMembers) {
+			if(member == clubMember)
+				return true;
+		}
+		return false;
+	}
+	
+	public boolean addGroupMember(ClubMember member) {
+		if(!isMember(member)) {
+			groupMembers.add(member);
+			return true;
+		}
+		return false;
+	}
 	public void setGroupMembers(ArrayList<ClubMember> groupMembers) {
 		this.groupMembers = groupMembers;
+	}
+	
+	public int getNumberOfMembers() {
+		return groupMembers.size();
 	}
 
 	public String toString() {

@@ -4,12 +4,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Branch {
+public class Branch extends HeadOffice{
 	String address;
 	String manager;
-	long accountNumber = 10000000;
+//	long accountNumber = 10000000;
 
-	public static final int SORT_CODE = 99122;
+//	public static final int SORT_CODE = 99122;
 	public ArrayList<Customer> customerList;
 
 	public Branch() {
@@ -44,9 +44,9 @@ public class Branch {
 		else if(accountType == BankDataConstants.SAVINGS_ACCOUNT)
 			customer.addAccount(new SavingsAccount(createAccountNumber()));
 	}
-	public long createAccountNumber() {
-		return accountNumber++;
-	}
+//	public long createAccountNumber() {
+//		return accountNumber++;
+//	}
 	
 	public BankAccount getAccount(Customer customer, long accountNumber) {
 		if(customer != null && accountNumber > 0) {

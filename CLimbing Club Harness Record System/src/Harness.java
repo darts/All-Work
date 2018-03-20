@@ -1,4 +1,6 @@
 public class Harness {
+	private static final int DEFAULT_USES = 0;
+	private static final int MAX_USES = 25;
 	private final String make;
 	private final int modelNumber;
 	private int numOfTimesUsed;
@@ -20,14 +22,14 @@ public class Harness {
 		this.make = make;
 		this.modelNumber = modelNumber;
 		this.lastCheckedBy = lastCheckedBy;
-		numOfTimesUsed = 0;
+		numOfTimesUsed = DEFAULT_USES;
 		onLoan = false;
 		loanMember = null;
 	}
 	
 	public boolean checkHarness(String instructorName) {
 		if(!onLoan && instructorName != null) {
-			numOfTimesUsed = 0;
+			numOfTimesUsed = DEFAULT_USES;
 			lastCheckedBy = instructorName;
 			return true;
 		}
@@ -39,7 +41,7 @@ public class Harness {
 	}
 	
 	public boolean canHarnessBeLoaned() {
-		if(numOfTimesUsed < 25 && !onLoan && loanMember == null) 
+		if(numOfTimesUsed < MAX_USES && !onLoan && loanMember == null) 
 			return true;
 		return false;
 	}

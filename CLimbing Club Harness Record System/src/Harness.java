@@ -63,22 +63,13 @@ public class Harness {
 	
 	@Override
 	public String toString() {
-		return "Harness [make=" + make + ", modelNumber=" + modelNumber + ", numOfTimesUsed=" + numOfTimesUsed
-				+ ", lastCheckedBy=" + lastCheckedBy + ", onLoan=" + onLoan + ", loanMember=" + loanMember + "]";
+		return "Make = " + make + "\nModel Number = " + modelNumber + "\nNumber Of Times Used = " + numOfTimesUsed
+				+ "\nLast Checked By = " + lastCheckedBy + "\nIs On Loan = " + onLoan + "\nLoan Member = " + loanMember;
 	}
 	
 	
 	
 	
-	
-	
-	
-	
-	
-	
-
-	
-
 	public int getNumOfTimesUsed() {
 		return numOfTimesUsed;
 	}

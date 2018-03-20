@@ -1,44 +1,50 @@
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class HarnessRecords {
-	ArrayList<Harness> harnessList;
-	boolean isValidList = true;
+	private ArrayList<Harness> harnessList;
+	private boolean isValidList = true;
 
-	public HarnessRecords(ArrayList<Harness> harnessList) {
-		this.harnessList = harnessList;
+	public HarnessRecords() {
+		harnessList = null;
 	}
 
 	// Read from a file.
-	public HarnessRecords(String fileName, int numOfHarnesses) {
-		try {
-			System.out.println(fileName);
-			BufferedReader reader = new BufferedReader(new FileReader(fileName));
+	public HarnessRecords(String fileName) {
+		harnessList = new ArrayList<Harness>();
+		readFromFile(fileName);
+	}
+	
+	public void initArray() {
+		harnessList = new ArrayList<Harness>();
+	}
 
-			for (int index = 0; index < numOfHarnesses; index++) {
-				String harnessData = reader.readLine();
-				if (harnessData == null) {
-				} else {
-					String[] harnessInfo = harnessData.split(",");
-					harnessList.add(new Harness(harnessInfo[0], Integer.parseInt(harnessInfo[1]),
-							Integer.parseInt(harnessInfo[2]), harnessInfo[3], Boolean.parseBoolean(harnessInfo[4]),
-							harnessInfo[5]));
-				}
+	public void readFromFile(String fileName) {
+		FileReader reader;
+		try {
+			reader = new FileReader(fileName);
+			BufferedReader buffReader = new BufferedReader(reader);
+			int lineCount = Integer.parseInt(buffReader.readLine());
+			for(int index = 0; index < lineCount; index++) {
+				String harnessData = buffReader.readLine();
+				String[] harnessInfo = harnessData.split(",");
+				harnessList.add(
+						new Harness(harnessInfo[0], Integer.parseInt(harnessInfo[1]), Integer.parseInt(harnessInfo[2]),
+								harnessInfo[3], Boolean.parseBoolean(harnessInfo[4]), harnessInfo[5]));
 			}
-			reader.close();
+			buffReader.close();
+			System.out.print(lineCount + " harnesses have been imported.\n>");
 		} catch (FileNotFoundException e) {
-			System.out.println("Sorry but this file could not be found.");
-			isValidList = false;
-		} catch (IOException e) {
-			System.out.println("IOException");
+			System.out.print("The file could not be found.\n>");
+		}catch(Exception e) {
+			System.out.print("The file could not be read, please check for formatting errors.\n>");
 		}
 	}
 
 	public boolean isEmpty() {
-		if (harnessList.size() == 0)
+		if (harnessList != null && harnessList.size() != 0)
 			return false;
 		return true;
 	}

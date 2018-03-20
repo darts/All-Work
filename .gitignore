@@ -1,2 +1,6 @@
 .metadata
 .recommenders
+*.log
+.metadata/.log
+.metadata/.log
+*.xmi

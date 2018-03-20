@@ -50,7 +50,7 @@ public class Bank implements BankInterface {
 	public void printBalance(long accountNumber) {
 		BankCustomer customer = findCustomer(accountNumber);
 		if (customer != null)
-			System.out.println("€" + customer.getBalance());
+			System.out.println("ï¿½" + customer.getBalance());
 		else
 			System.out.println("Account Number does not exist");
 	}

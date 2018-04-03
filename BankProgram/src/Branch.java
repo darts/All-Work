@@ -14,6 +14,11 @@ public class Branch extends HeadOffice{
 
 	public Branch() {
 		customerList = new ArrayList<Customer>();
+		this.sortCode = createSortCode();
+	}
+	
+	public Branch(int sortCode) {
+		
 	}
 
 	public Customer getCustomer(long accountNumber) {
